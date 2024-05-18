@@ -1,10 +1,12 @@
 import './App.css';
-import Card from './components/card/Card';
+import CardList from './components/CardList/CardList';
+import Search from './components/Search/Search';
 
 function App() {
   return (
     <div className="App">
-      <Card/>
+      <Search/>
+      <CardList/>
     </div>
   );
 }
