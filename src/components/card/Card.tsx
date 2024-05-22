@@ -1,21 +1,21 @@
 import React from 'react'
+import { CompanySearch } from '../../company.d';
 
 interface Props {
-  companyName: string;
-  ticker: string;
-  price: number;
+  id: string;
+  searchResult: CompanySearch;
 }
 
-const Card = ({companyName, ticker, price}: Props) => {
+const Card = ({id, searchResult}: Props) => {
   return (
     <div className='card'>
-      <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Image" />
+      <img alt="company logo" />
       <div className='details'>
-          <h2>{companyName} ({ticker})</h2>
-          <p>${price}</p>
+          <h2>{searchResult.name} ({searchResult.symbol})</h2>
+          <p>{searchResult.currency}</p>
       </div>
       <p className='info'>
-          The information
+          {searchResult.exchangeShortName} - {searchResult.stockExchange}
       </p>
   </div>
   );
