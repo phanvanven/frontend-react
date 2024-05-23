@@ -1,4 +1,4 @@
-import { ChangeEvent, SyntheticEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import './App.css';
 import CardList from './components/CardList/CardList';
 import Search from './components/Search/Search';
@@ -11,26 +11,32 @@ function App() {
   const [serverError, setServerError] = useState<string>("");
 
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>)=>{
-      setSearch(e.target.value);
-      console.log(e);
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+    console.log(e);
   };
 
-  const onClick = async (e: SyntheticEvent) =>{
+  const onSearchSubmit = async () => {
     const result = await searchCompanies(search);
-    if(typeof result === "string"){
+    if (typeof result === "string") {
       setServerError(result);
-    }else if(Array.isArray(result.data)){
+    } else if (Array.isArray(result.data)) {
       setSearchResult(result.data);
     }
 
     console.log(searchResult);
   };
 
+  const onPortfolioCreate = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(e);
+  }
+
   return (
     <div className="App">
-      <Search onClick={onClick} search={search} handleChange={handleChange}/>
-      <CardList searchResults={searchResult}/>
+      <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange} />
+      <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate} />
       {serverError && <div>Unable to connect to API</div>}
     </div>
   );

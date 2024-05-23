@@ -1,23 +1,31 @@
-import React from 'react'
+import { FormEventHandler } from 'react'
 import { CompanySearch } from '../../company.d';
+import AddPortfolio from '../Portfolio/AddPortfolio/AddPortfolio';
 
 interface Props {
   id: string;
   searchResult: CompanySearch;
+  onPortfolioCreate: FormEventHandler<HTMLFormElement>
 }
 
-const Card = ({id, searchResult}: Props) => {
+const Card = (props: Props) => {
+  const {
+    id,
+    searchResult, 
+    onPortfolioCreate
+  } = props;
   return (
     <div className='card'>
       <img alt="company logo" />
       <div className='details'>
-          <h2>{searchResult.name} ({searchResult.symbol})</h2>
-          <p>{searchResult.currency}</p>
+        <h2>{searchResult.name} ({searchResult.symbol})</h2>
+        <p>{searchResult.currency}</p>
       </div>
       <p className='info'>
-          {searchResult.exchangeShortName} - {searchResult.stockExchange}
+        {searchResult.exchangeShortName} - {searchResult.stockExchange}
       </p>
-  </div>
+      <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={searchResult.symbol} />
+    </div>
   );
 }
 
