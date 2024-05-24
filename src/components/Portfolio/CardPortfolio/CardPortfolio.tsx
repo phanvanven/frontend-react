@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { FormEventHandler } from 'react'
+import DeletePortfolio from '../DeletePortfolio/DeletePortfolio';
 
 interface Props {
     portfolioValue: string;
+    onPortfolioDelete: FormEventHandler<HTMLFormElement>
 }
 
 const CardPortfolio = (props: Props) => {
-    const { portfolioValue } = props;
+    const { portfolioValue, onPortfolioDelete } = props;
     return (
         <>
             <h4>{portfolioValue}</h4>
-            <button>X</button>
+            <DeletePortfolio onPortfolioDelete={onPortfolioDelete} portfolioValue={portfolioValue}/>
         </>
     )
 }

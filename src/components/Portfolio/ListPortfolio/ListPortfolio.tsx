@@ -1,17 +1,18 @@
-import React from 'react'
+import {FormEventHandler } from 'react'
 import CardPortfolio from '../CardPortfolio/CardPortfolio';
 
 interface Props {
-    portfolioValues: string[]
+    portfolioValues: string[];
+    onPortfolioDelete: FormEventHandler<HTMLFormElement>
 }
 
 const ListPortfolio = (props: Props) => {
-    const { portfolioValues } = props;
+    const { portfolioValues, onPortfolioDelete } = props;
     return (
         <>
             <h3>My Portfolio</h3>
             <ul>{portfolioValues && portfolioValues.map(portfolioValue =>{
-                return <CardPortfolio portfolioValue={portfolioValue}/>;
+                return <CardPortfolio portfolioValue={portfolioValue} onPortfolioDelete={onPortfolioDelete}/>;
             })}
             </ul>
         </>
