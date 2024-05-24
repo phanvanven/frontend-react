@@ -5,6 +5,8 @@ import Search from './components/Search/Search';
 import { CompanySearch } from './company.d';
 import { searchCompanies } from './api';
 import ListPortfolio from './components/Portfolio/ListPortfolio/ListPortfolio';
+import NavBar from './components/NavBar/NavBar';
+import Hero from './components/Hero/Hero';
 
 function App() {
   const [search, setSearch] = useState<string>("");
@@ -47,6 +49,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar />
       <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange} />
       <ListPortfolio portfolioValues={portfolioValues} onPortfolioDelete={onPortfolioDelete}/>
       <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate} />
