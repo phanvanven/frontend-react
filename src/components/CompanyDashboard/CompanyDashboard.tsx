@@ -2,7 +2,8 @@ import { ReactNode } from 'react'
 import { Outlet } from 'react-router-dom'
 
 type Props = {
-    children: ReactNode
+    children: ReactNode;
+    ticker: string;
 }
 
 const CompanyDashboard = (props: Props) => {
